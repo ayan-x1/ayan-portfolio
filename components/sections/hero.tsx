@@ -8,6 +8,7 @@ import { ResumeModal } from '@/components/resume-modal';
 import React from 'react';
 import dynamic from 'next/dynamic';
 import { useTheme } from 'next-themes';
+import SpaceScrollButton from '@/components/space-scroll-button';
 
 // Simple typewriter effect for roles
 const roles = [
@@ -164,26 +165,9 @@ export function Hero() {
           </motion.button>
         </motion.div>
         {/* Scroll Down Arrow */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.2, duration: 0.7 }}
-          className="flex justify-center mt-10"
-        >
-          <button
-            aria-label="Scroll to About"
-            onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
-            className="rounded-full p-2 bg-white/20 hover:bg-blue-400/30 transition-colors border border-blue-300 dark:bg-black/30 dark:hover:bg-blue-500/30 dark:border-blue-500 shadow-lg"
-            style={{ outline: 'none' }}
-          >
-            <motion.div
-              animate={{ y: [0, 10, 0] }}
-              transition={{ repeat: Infinity, duration: 1.5, ease: 'easeInOut' }}
-            >
-              <ArrowDown size={32} className={theme === 'dark' ? 'text-blue-300' : 'text-blue-700'} />
-            </motion.div>
-          </button>
-        </motion.div>
+        <div className="flex justify-center mt-10">
+          <SpaceScrollButton onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })} />
+        </div>
       </div>
       <ResumeModal 
         isOpen={showResumeModal} 
