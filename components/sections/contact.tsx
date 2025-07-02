@@ -79,19 +79,19 @@ export function Contact() {
 
     try {
       // Initialize EmailJS with your public key
-      emailjs.init("YOUR_PUBLIC_KEY");
+      emailjs.init("vbxLMo71V4JfYn_UC");
 
       const templateParams = {
         from_name: formData.name,
         from_email: formData.email,
         subject: formData.subject,
         message: formData.message,
-        to_name: 'Ayan',
+        to_name: 'Ayan Ali',
       };
 
       await emailjs.send(
-        'YOUR_SERVICE_ID',
-        'YOUR_TEMPLATE_ID',
+        'service_l6ntj1a',
+        'template_uy73vna',
         templateParams
       );
 
