@@ -141,8 +141,8 @@ export function Footer() {
               viewport={{ once: true }}
               className="text-sm text-muted-foreground flex items-center gap-1"
             >
-              © {new Date().getFullYear()} Ayan. Made with{' '}
-              <Heart className="w-4 h-4 text-red-500 fill-current" /> using Next.js & Tailwind CSS
+              © {new Date().getFullYear()} Ayan · All rights reserved · Built with {' '}
+              <Heart className="w-4 h-4 text-white fill-current" />
             </motion.p>
 
             <motion.div
