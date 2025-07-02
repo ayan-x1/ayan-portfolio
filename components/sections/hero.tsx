@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import { ArrowDown, Download, Eye, Github, Linkedin, Mail } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { ResumeModal } from '@/components/resume-modal';
 import React from 'react';
 import dynamic from 'next/dynamic';
@@ -12,8 +12,10 @@ import SpaceScrollButton from '@/components/space-scroll-button';
 
 // Simple typewriter effect for roles
 const roles = [
-  'Full Stack Developer',
-  'MERN Enthusiast',
+  'Full Stack Web Developer',
+  'MERN Stack Specialist',
+  'Future Tech Innovator',
+  'Clean Code Advocate',
   'Open Source Contributor',
 ];
 
@@ -50,6 +52,31 @@ export function Hero() {
   const [showResumeModal, setShowResumeModal] = useState(false);
   const { resolvedTheme } = useTheme();
   const theme = resolvedTheme || 'dark';
+  const [showScrollButton, setShowScrollButton] = useState(true);
+
+  // Hide scroll button if not at top/hero section on load or scroll
+  useEffect(() => {
+    function checkScrollOrHash() {
+      const hash = window.location.hash;
+      const scrollY = window.scrollY;
+      const hero = document.getElementById('home');
+      if (!hero) return;
+      const heroRect = hero.getBoundingClientRect();
+      // Show only if at top or hash is #home or empty, and hero is mostly in view
+      if ((hash === '' || hash === '#home') && heroRect.top > -100 && heroRect.bottom > window.innerHeight / 2) {
+        setShowScrollButton(true);
+      } else {
+        setShowScrollButton(false);
+      }
+    }
+    checkScrollOrHash();
+    window.addEventListener('scroll', checkScrollOrHash);
+    window.addEventListener('hashchange', checkScrollOrHash);
+    return () => {
+      window.removeEventListener('scroll', checkScrollOrHash);
+      window.removeEventListener('hashchange', checkScrollOrHash);
+    };
+  }, []);
 
   const downloadResume = () => {
     const link = document.createElement('a');
@@ -74,22 +101,22 @@ export function Hero() {
         <SpaceCanvas />
       </div>
       {/* Hero Content */}
-      <div className="relative z-10 w-full max-w-4xl mx-auto px-4 flex flex-col items-center justify-center min-h-[70vh] text-center">
-        {/* Profile Photo with Professional Frame */}
+      <div className="relative z-10 w-full max-w-5xl mx-auto px-4 flex flex-col md:flex-row items-center justify-center min-h-[70vh] gap-10 md:gap-16">
+        {/* Ellipse Photo Frame on Left */}
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, delay: 0.2 }}
-          className="mb-6 flex justify-center"
+          className="flex-shrink-0 flex justify-center items-center"
         >
           <div
             className={
-              `rounded-full border-4 shadow-lg overflow-hidden flex items-center justify-center ` +
+              `overflow-hidden border-4 shadow-lg flex items-center justify-center ` +
               (theme === 'dark'
                 ? 'border-blue-400 bg-black'
                 : 'border-blue-700 bg-white')
             }
-            style={{ width: 128, height: 128 }}
+            style={{ width: 170, height: 220, borderRadius: '50% / 40%' }}
           >
             <img
               src="/ayan.jpg"
@@ -99,76 +126,81 @@ export function Hero() {
             />
           </div>
         </motion.div>
-        {/* Animated Name */}
-        <motion.h1
-          initial={{ opacity: 0, y: 40, scale: 0.95 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 1 }}
-          className={
-            `text-4xl sm:text-6xl lg:text-7xl font-extrabold mb-6 tracking-tight futuristic-font ` +
-            (theme === 'dark' ? 'text-white' : 'text-black')
-          }
-        >
-          Hi, I'm{' '}
-          <motion.span
-            initial={{ opacity: 0, x: 40 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.5, duration: 0.8, type: 'spring' }}
-            style={{ color: theme === 'dark' ? '#60a5fa' : '#1d4ed8', display: 'inline-block' }}
-            className="drop-shadow-lg"
+        {/* Right Side: Name, Typewriter, Buttons */}
+        <div className="flex-1 flex flex-col items-center md:items-start text-center md:text-left">
+          <motion.h1
+            initial="hidden"
+            animate="visible"
+            variants={{
+              hidden: {},
+              visible: { transition: { staggerChildren: 0.12 } }
+            }}
+            className={`text-4xl sm:text-6xl lg:text-7xl font-extrabold mb-6 tracking-tight futuristic-font ${theme === 'dark' ? 'text-white' : 'text-black'}`}
           >
-            Ayan
-          </motion.span>
-        </motion.h1>
-        <motion.p
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 1 }}
-          className={
-            `text-xl sm:text-2xl mb-8 max-w-2xl mx-auto ` +
-            (theme === 'dark' ? 'text-blue-200' : 'text-blue-700')
-          }
-        >
-          A Frontend Developer building the future, one pixel at a time.
-        </motion.p>
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6, duration: 1 }}
-          className="flex flex-col sm:flex-row gap-4 justify-center items-center"
-        >
-          <motion.button
-            whileHover={{ scale: 1.08, y: -4 }}
-            transition={{ type: 'spring', stiffness: 300 }}
-            onClick={downloadResume}
-            className={
-              `px-8 py-3 rounded-lg shadow-lg text-lg font-semibold focus:outline-none focus:ring-2 focus:ring-blue-400 floating-cta ` +
-              (theme === 'dark'
-                ? 'bg-white text-black hover:bg-blue-200'
-                : 'bg-black text-white hover:bg-blue-800')
-            }
+            <span className="block">
+              {["Hey there,", "I'm"].map((word, i) => (
+                <motion.span
+                  key={word}
+                  initial={{ opacity: 0, y: 40 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.15, duration: 0.7, type: 'spring' }}
+                  className="inline-block mr-2"
+                >
+                  {word}
+                </motion.span>
+              ))}
+              <motion.span
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.35, duration: 0.7, type: 'spring' }}
+                className="inline-block bg-gradient-to-r from-blue-400 via-blue-600 to-blue-800 bg-clip-text text-transparent drop-shadow-lg"
+                style={{ WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}
+              >
+                Ayan
+              </motion.span>
+            </span>
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 1 }}
+            className={`text-xl sm:text-2xl mb-8 max-w-2xl ${theme === 'dark' ? 'text-blue-200' : 'text-blue-700'}`}
           >
-            Download Resume
-          </motion.button>
-          <motion.button
-            whileHover={{ scale: 1.08, y: -4 }}
-            transition={{ type: 'spring', stiffness: 300 }}
-            onClick={goToProjects}
-            className={
-              `px-8 py-3 rounded-lg shadow-lg text-lg font-semibold focus:outline-none focus:ring-2 focus:ring-blue-400 floating-cta ` +
-              (theme === 'dark'
-                ? 'bg-white/10 text-blue-200 hover:bg-white/20'
-                : 'bg-blue-100 text-blue-700 hover:bg-blue-200')
-            }
+            <Typewriter />
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6, duration: 1 }}
+            className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start items-center"
           >
-            View Projects
-          </motion.button>
-        </motion.div>
-        {/* Scroll Down Arrow */}
-        <div className="flex justify-center mt-10">
-          <SpaceScrollButton onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })} />
+            <motion.button
+              whileHover={{ scale: 1.08, y: -4 }}
+              transition={{ type: 'spring', stiffness: 300 }}
+              onClick={downloadResume}
+              className={`px-8 py-3 rounded-lg shadow-lg text-lg font-semibold focus:outline-none focus:ring-2 focus:ring-blue-400 floating-cta ${theme === 'dark' ? 'bg-white text-black hover:bg-blue-200' : 'bg-black text-white hover:bg-blue-800'}`}
+            >
+              Download Resume
+            </motion.button>
+            <motion.button
+              whileHover={{ scale: 1.08, y: -4 }}
+              transition={{ type: 'spring', stiffness: 300 }}
+              onClick={goToProjects}
+              className={`px-8 py-3 rounded-lg shadow-lg text-lg font-semibold focus:outline-none focus:ring-2 focus:ring-blue-400 floating-cta ${theme === 'dark' ? 'bg-white/10 text-blue-200 hover:bg-white/20' : 'bg-blue-100 text-blue-700 hover:bg-blue-200'}`}
+            >
+              View Projects
+            </motion.button>
+          </motion.div>
         </div>
       </div>
+      {showScrollButton && (
+        <div className="fixed left-1/2 bottom-8 z-20 -translate-x-1/2">
+          <SpaceScrollButton onClick={() => {
+            document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
+            setShowScrollButton(false);
+          }} />
+        </div>
+      )}
       <ResumeModal 
         isOpen={showResumeModal} 
         onClose={() => setShowResumeModal(false)} 
