@@ -142,7 +142,7 @@ export function Footer() {
               className="text-sm text-muted-foreground flex items-center gap-1"
             >
               © {new Date().getFullYear()} Ayan · All rights reserved · Built with {' '}
-              <Heart className="w-4 h-4 text-white fill-current" />
+              <Heart className="w-4 h-4 text-red-500 fill-current" />
             </motion.p>
 
             <motion.div
