@@ -46,22 +46,21 @@ const skills = [
 
 const experiences = [
   {
-    title: 'Senior Full Stack Developer',
-    company: 'Tech Solutions Inc.',
-    period: '2022 - Present',
-    description: 'Led development of scalable web applications using React, Node.js, and cloud technologies.'
-  },
-  {
-    title: 'Frontend Developer',
-    company: 'Digital Agency',
-    period: '2020 - 2022',
-    description: 'Developed responsive web applications and collaborated with design teams to create exceptional user experiences.'
-  },
-  {
-    title: 'Junior Developer',
-    company: 'StartUp Co.',
-    period: '2019 - 2020',
-    description: 'Built and maintained web applications while learning modern development practices and technologies.'
+    title: 'TatvaSoft – 15-Day Summer Internship Program',
+    company: 'Project Repository | Certificate',
+    period: '26 May – 13 June 2025',
+    description: (
+      <>
+        <ul className="list-disc pl-5">
+          <li>Completed a structured 15-day internship at TatvaSoft, practicing real-world full-stack development.</li>
+          <li>Daily assignments included building robust front-end components with <b>Angular</b> and implementing business logic, RESTful services and data models in <b>ASP.NET Core</b>.</li>
+          <li>Developed and tested APIs using Swagger UI, allowing easy exploration, validation, and documentation of endpoints.</li>
+          <li>Deployed applications on a cloud hosting platform (e.g., Azure/AWS/Netlify), with live links and CI/CD workflow configured.</li>
+          <li>Tech stack: ASP.NET Core, Angular, TypeScript, HTML5, SCSS, SQL Server; Tooling: Swagger, Git, VS Code.</li>
+          <li>Gained experience in component-based UI design, form handling, HTTP client integration, debugging Angular services, and modular project architecture.</li>
+        </ul>
+      </>
+    )
   }
 ];
 
@@ -150,7 +149,7 @@ export function About() {
                     <p className="text-primary font-medium">{exp.company}</p>
                     <p className="text-sm text-muted-foreground">{exp.period}</p>
                   </div>
-                  <p className="text-muted-foreground">{exp.description}</p>
+                  <div className="text-muted-foreground">{exp.description}</div>
                 </motion.div>
               ))}
             </div>

@@ -23,7 +23,7 @@ const contactInfo = [
     icon: Phone,
     label: 'Phone',
     value: '+91 9313917598',
-    href: 'tel:+919313917598',
+    href: 'NA',
     color: 'from-green-500 to-emerald-500'
   },
   {
@@ -51,7 +51,7 @@ const socialLinks = [
   {
     icon: Twitter,
     label: 'Twitter',
-    href: 'https://twitter.com/yourusername',
+    href: 'https://x.com/ayanali8347',
     color: 'hover:text-blue-400'
   }
 ];
@@ -227,7 +227,7 @@ export function Contact() {
                         value={formData.name}
                         onChange={handleInputChange}
                         required
-                        placeholder="Your full name"
+                        placeholder="John Doe"
                         className="transition-all duration-200 focus:ring-2 focus:ring-primary/20"
                       />
                     </div>
@@ -240,7 +240,7 @@ export function Contact() {
                         value={formData.email}
                         onChange={handleInputChange}
                         required
-                        placeholder="your.email@example.com"
+                        placeholder="johndoe@example.com"
                         className="transition-all duration-200 focus:ring-2 focus:ring-primary/20"
                       />
                     </div>
