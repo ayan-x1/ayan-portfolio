@@ -10,7 +10,7 @@ import { Button } from '@/components/ui/button';
 const projects = [
   {
     id: 1,
-    title: "ayan-portfolio",
+    title: "ayanali-portfolio",
     description: "Personal portfolio website built with Next.js, React, and Tailwind CSS. Showcases my skills, projects, and contact information.",
     image: "https://raw.githubusercontent.com/ayan-x1/ayan-portfolio/main/public/portfolio-cover.png",
     technologies: ["Next.js", "React", "Tailwind CSS", "TypeScript"],
@@ -381,7 +381,7 @@ export function Projects() {
                 className="flex items-center gap-2"
               >
                 <a
-                  href="https://github.com/yourusername"
+                  href="https://github.com/ayan-x1"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
