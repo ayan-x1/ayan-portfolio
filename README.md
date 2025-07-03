@@ -2,7 +2,7 @@
 
 ## 🌐 Live Demo
 
-🛰️ [https://ayan-portfolio.vercel.app](https://ayan-portfolio-bice.vercel.app/)
+🛰️ [https://ayan-portfolio.vercel.app](https://ayanali-portfolio.vercel.app/)
 
 ---
 
