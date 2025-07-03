@@ -10,22 +10,6 @@ import { Button } from '@/components/ui/button';
 const projects = [
   {
     id: 1,
-    title: "ayanali-portfolio",
-    description: "Personal portfolio website built with Next.js, React, and Tailwind CSS. Showcases my skills, projects, and contact information.",
-    image: "portfolio.png",
-    technologies: ["Next.js", "React", "Tailwind CSS", "TypeScript"],
-    githubUrl: "https://github.com/ayan-x1/ayan-portfolio",
-    liveUrl: "https://ayan-portfolio.vercel.app/",
-    featured: true,
-    stats: {
-      stars: 0,
-      forks: 0,
-      lastUpdated: "2024-06-01"
-    },
-    category: "Full Stack"
-  },
-  {
-    id: 2,
     title: "auth-tutorial",
     description: "A full-stack authentication system using the MERN stack. Features user registration, login, JWT authentication, and password reset.",
     image: "auth.png",
@@ -41,7 +25,7 @@ const projects = [
     category: "Full Stack"
   },
   {
-    id: 3,
+    id: 2,
     title: "blog-buzz",
     description: "A MERN stack blogging platform with user authentication, post creation/editing, and content management.",
     image: "bb.png",
@@ -57,7 +41,7 @@ const projects = [
     category: "Full Stack"
   },
   {
-    id: 4,
+    id: 3,
     title: "Virtual-Community-Support-Platfrom",
     description: "A virtual community support platform with a modern AngularJS frontend and a robust ASP.NET Core backend. Features include API documentation with Swagger and PostgreSQL for data storage.",
     image: "vcsp.png",
