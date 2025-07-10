@@ -8,7 +8,7 @@ import { ResumeModal } from '@/components/resume-modal';
 import React from 'react';
 import dynamic from 'next/dynamic';
 import { useTheme } from 'next-themes';
-import SpaceScrollButton from '@/components/space-scroll-button';
+import { Particles } from "@/components/ui/particles";
 
 // Simple typewriter effect for roles
 const roles = [
@@ -46,37 +46,11 @@ function Typewriter() {
   );
 }
 
-const SpaceCanvas = dynamic(() => import('./SpaceCanvas'), { ssr: false });
-
 export function Hero() {
   const [showResumeModal, setShowResumeModal] = useState(false);
   const { resolvedTheme } = useTheme();
   const theme = resolvedTheme || 'dark';
   const [showScrollButton, setShowScrollButton] = useState(true);
-
-  // Hide scroll button if not at top/hero section on load or scroll
-  useEffect(() => {
-    function checkScrollOrHash() {
-      const hash = window.location.hash;
-      const scrollY = window.scrollY;
-      const hero = document.getElementById('home');
-      if (!hero) return;
-      const heroRect = hero.getBoundingClientRect();
-      // Show only if at top or hash is #home or empty, and hero is mostly in view
-      if ((hash === '' || hash === '#home') && heroRect.top > -100 && heroRect.bottom > window.innerHeight / 2) {
-        setShowScrollButton(true);
-      } else {
-        setShowScrollButton(false);
-      }
-    }
-    checkScrollOrHash();
-    window.addEventListener('scroll', checkScrollOrHash);
-    window.addEventListener('hashchange', checkScrollOrHash);
-    return () => {
-      window.removeEventListener('scroll', checkScrollOrHash);
-      window.removeEventListener('hashchange', checkScrollOrHash);
-    };
-  }, []);
 
   const downloadResume = () => {
     const link = document.createElement('a');
@@ -96,10 +70,14 @@ export function Hero() {
       `relative min-h-screen flex items-center justify-center overflow-hidden ` +
       (theme === 'dark' ? 'bg-black' : 'bg-white')
     }>
-      {/* 3D Starfield Background */}
-      <div className="absolute inset-0 z-0">
-        <SpaceCanvas />
-      </div>
+      {/* Particles Background */}
+      <Particles
+        className="absolute inset-0 z-0"
+        quantity={100}
+        ease={80}
+        color={theme === 'dark' ? '#ffffff' : '#000000'}
+        refresh
+      />
       {/* Hero Content */}
       <div className="relative z-10 w-full max-w-5xl mx-auto px-4 flex flex-col md:flex-row items-center justify-center min-h-[70vh] gap-10 md:gap-16">
         {/* Ellipse Photo Frame on Left */}
@@ -193,14 +171,6 @@ export function Hero() {
           </motion.div>
         </div>
       </div>
-      {showScrollButton && (
-        <div className="fixed left-1/2 bottom-8 z-20 -translate-x-1/2">
-          <SpaceScrollButton onClick={() => {
-            document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
-            setShowScrollButton(false);
-          }} />
-        </div>
-      )}
       <ResumeModal 
         isOpen={showResumeModal} 
         onClose={() => setShowResumeModal(false)} 
