@@ -83,12 +83,6 @@ const config: Config = {
   				},
   				'100%': {
   					transform: 'translateY(0)'
-  				},
-  				'0%': {
-  					transform: 'translateY(-50%)'
-  				},
-  				'100%': {
-  					transform: 'translateY(0)'
   				}
   			}
   		},
