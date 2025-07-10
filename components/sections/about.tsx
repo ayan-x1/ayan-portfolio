@@ -9,19 +9,19 @@ const skills = [
   {
     category: 'Frontend',
     icon: Globe,
-    technologies: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Vue.js', 'Angular'],
+    technologies: ['React', 'Next', 'TypeScript', 'Tailwind CSS', 'Vue', 'Angular'],
     color: 'from-blue-500 to-cyan-500'
   },
   {
     category: 'Backend',
     icon: Server,
-    technologies: ['Node.js', 'Python', 'Express', 'FastAPI', 'PostgreSQL', 'MongoDB'],
+    technologies: ['Node.js', 'ASP.NET Core', 'Express', 'FastAPI' ],
     color: 'from-green-500 to-emerald-500'
   },
   {
     category: 'Mobile',
     icon: Smartphone,
-    technologies: ['React Native', 'Flutter', 'iOS', 'Android', 'Expo'],
+    technologies: ['React Native', 'iOS', 'Android', 'Expo' ],
     color: 'from-purple-500 to-pink-500'
   },
   {
