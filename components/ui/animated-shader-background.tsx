@@ -12,7 +12,10 @@ const AnoAI = () => {
     const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
     const renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
-    container.appendChild(renderer.domElement);
+    if (container) {
+      container.appendChild(renderer.domElement);
+    }
+    
 
     const material = new THREE.ShaderMaterial({
       uniforms: {
