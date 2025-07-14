@@ -8,7 +8,7 @@ import { ResumeModal } from '@/components/resume-modal';
 import React from 'react';
 import dynamic from 'next/dynamic';
 import { useTheme } from 'next-themes';
-import { Particles } from "@/components/ui/particles";
+import AnoAI from "@/components/ui/animated-shader-background";
 
 // Simple typewriter effect for roles
 const roles = [
@@ -71,13 +71,7 @@ export function Hero() {
       (theme === 'dark' ? 'bg-black' : 'bg-white')
     }>
       {/* Particles Background */}
-      <Particles
-        className="absolute inset-0 z-0"
-        quantity={100}
-        ease={80}
-        color={theme === 'dark' ? '#ffffff' : '#000000'}
-        refresh
-      />
+      <AnoAI />
       {/* Hero Content */}
       <div className="relative z-10 w-full max-w-5xl mx-auto px-4 flex flex-col md:flex-row items-center justify-center min-h-[70vh] gap-10 md:gap-16">
         {/* Ellipse Photo Frame on Left */}
