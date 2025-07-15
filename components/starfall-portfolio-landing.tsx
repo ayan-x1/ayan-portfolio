@@ -7,13 +7,13 @@ interface Project { title: string; description: string; tags: string[]; imageCon
 interface Stat { value: string; label: string; }
 
 export interface PortfolioPageProps {
-  logo?: { initials: React.ReactNode; name: React.ReactNode; };
-  navLinks?: NavLink[];
-  resume?: { label: string; onClick?: () => void; };
-  hero?: { titleLine1: React.ReactNode; titleLine2Gradient: React.ReactNode; subtitle: React.ReactNode; };
-  ctaButtons?: { primary: { label: string; onClick?: () => void; }; secondary: { label: string; onClick?: () => void; }; };
-  projects?: Project[];
-  stats?: Stat[];
+  logo: { initials: React.ReactNode; name: React.ReactNode; };
+  navLinks: NavLink[];
+  resume: { label: string; onClick: () => void; };
+  hero: { titleLine1: React.ReactNode; titleLine2Gradient: React.ReactNode; subtitle: React.ReactNode; };
+  ctaButtons: { primary: { label: string; onClick: () => void; }; secondary: { label: string; onClick: () => void; }; };
+  projects: Project[];
+  stats: Stat[];
   showAnimatedBackground?: boolean;
 }
 
@@ -62,13 +62,30 @@ const AuroraBackground: React.FC = () => {
 };
 
 // --- DEFAULT DATA ---
-const defaultData = {
+const defaultData: PortfolioPageProps = {
   logo: { initials: 'MT', name: 'Meng To' },
   navLinks: [ { label: 'About', href: '#about' }, { label: 'Projects', href: '#projects' }, { label: 'Skills', href: '#skills' } ],
-  resume: { label: 'Resume' },
+  resume: { 
+    label: 'Resume',
+    onClick: () => {
+      const link = document.createElement('a');
+      link.href = '/Ayan_s_Resume.pdf';
+      link.download = 'Ayan_Resume.pdf';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+  },
   hero: { titleLine1: 'Creative Developer &', titleLine2Gradient: 'Digital Designer', subtitle: 'I craft beautiful digital experiences through code and design. Specializing in modern web development, UI/UX design, and bringing innovative ideas to life.', },
-  ctaButtons: { primary: { label: 'View My Work' }, secondary: { label: 'Get In Touch' }, },
-  projects: [ { title: 'FinTech Mobile App', description: 'React Native app with AI-powered financial insights.', tags: ['React Native', 'Node.js'] }, { title: 'Data Visualization Platform', description: 'Interactive dashboard for complex data analysis.', tags: ['D3.js', 'Python'] }, { title: '3D Portfolio Site', description: 'Immersive WebGL experience with 3D elements.', tags: ['Three.js', 'WebGL'] }, ],
+  ctaButtons: { 
+    primary: { label: 'View My Work', onClick: () => {} },
+    secondary: { label: 'Get In Touch', onClick: () => {} },
+  },
+  projects: [ 
+    { title: 'FinTech Mobile App', description: 'React Native app with AI-powered financial insights.', tags: ['React Native', 'Node.js'], imageContent: undefined }, 
+    { title: 'Data Visualization Platform', description: 'Interactive dashboard for complex data analysis.', tags: ['D3.js', 'Python'], imageContent: undefined }, 
+    { title: '3D Portfolio Site', description: 'Immersive WebGL experience with 3D elements.', tags: ['Three.js', 'WebGL'], imageContent: undefined }, 
+  ],
   stats: [ { value: '50+', label: 'Projects Completed' }, { value: '5+', label: 'Years Experience' }, { value: '15+', label: 'Happy Clients' }, ],
 };
 

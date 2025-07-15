@@ -7,7 +7,7 @@ import { Toaster } from '@/components/ui/sonner';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://ayanali-portfolio.vercel.app/'),
+  metadataBase: new URL('https://ayanali-portfolio.netlify.app/'),
   title: 'Ayan - Full Stack Developer',
   description: 'Professional portfolio showcasing full-stack development expertise',
   keywords: 'developer, portfolio, full-stack, web development, software engineer',
