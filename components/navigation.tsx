@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Moon, Sun, Download, Eye } from 'lucide-react';
+import { Menu, X, Moon, Sun, Eye } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { Button } from '@/components/ui/button';
 import { ResumeModal } from '@/components/resume-modal';
@@ -39,14 +39,7 @@ export function Navigation() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollY]);
 
-  const downloadResume = () => {
-    const link = document.createElement('a');
-    link.href = '/Ayan_s_Resume.pdf';
-    link.download = 'Ayan_Resume.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
+  // Removed downloadResume function as Download button is being removed
 
   if (!mounted) return null;
 
@@ -101,17 +94,7 @@ export function Navigation() {
                   <Eye className="w-4 h-4" />
                   View Resume
                 </Button>
-                
-                <Button
-                  variant="default"
-                  size="sm"
-                  onClick={downloadResume}
-                  className="flex items-center gap-2"
-                >
-                  <Download className="w-4 h-4" />
-                  Download
-                </Button>
-
+                {/* Removed Download button from desktop navigation */}
                 <Button
                   variant="ghost"
                   size="sm"
@@ -185,19 +168,7 @@ export function Navigation() {
                     <Eye className="w-4 h-4" />
                     View Resume
                   </Button>
-                  
-                  <Button
-                    variant="default"
-                    size="sm"
-                    onClick={() => {
-                      downloadResume();
-                      setIsOpen(false);
-                    }}
-                    className="flex items-center gap-2 justify-center"
-                  >
-                    <Download className="w-4 h-4" />
-                    Download Resume
-                  </Button>
+                  {/* Removed Download button from mobile navigation */}
                 </div>
               </div>
             </motion.div>

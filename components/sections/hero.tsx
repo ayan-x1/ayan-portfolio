@@ -10,6 +10,7 @@ import dynamic from 'next/dynamic';
 import { useTheme } from 'next-themes';
 import { Particles } from "@/components/ui/particles";
 import * as THREE from 'three';
+import { TextAnimate } from "@/components/magicui/text-animate";
 
 // Simple typewriter effect for roles
 const roles = [
@@ -20,30 +21,23 @@ const roles = [
   'Open Source Contributor',
 ];
 
-function Typewriter() {
+function AnimatedRoles() {
   const [index, setIndex] = useState(0);
-  const [displayed, setDisplayed] = useState('');
-  const [char, setChar] = useState(0);
-
-  React.useEffect(() => {
-    if (char < roles[index].length) {
-      const timeout = setTimeout(() => {
-        setDisplayed(roles[index].slice(0, char + 1));
-        setChar(char + 1);
-      }, 70);
-      return () => clearTimeout(timeout);
-    } else {
-      const timeout = setTimeout(() => {
-        setChar(0);
-        setDisplayed('');
-        setIndex((index + 1) % roles.length);
-      }, 1200);
-      return () => clearTimeout(timeout);
-    }
-  }, [char, index]);
-
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setIndex((prev) => (prev + 1) % roles.length);
+    }, 2000);
+    return () => clearTimeout(timeout);
+  }, [index]);
   return (
-    <span className="text-primary font-semibold">{displayed}<span className="animate-pulse">|</span></span>
+    <TextAnimate
+      key={roles[index]}
+      animation="slideLeft"
+      by="character"
+      className="text-primary font-semibold"
+    >
+      {roles[index]}
+    </TextAnimate>
   );
 }
 
@@ -203,7 +197,7 @@ export function Hero() {
             transition={{ delay: 0.3, duration: 1 }}
             className={`text-xl sm:text-2xl mb-8 max-w-2xl ${theme === 'dark' ? 'text-blue-200' : 'text-blue-700'}`}
           >
-            <Typewriter />
+            <AnimatedRoles />
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 40 }}
