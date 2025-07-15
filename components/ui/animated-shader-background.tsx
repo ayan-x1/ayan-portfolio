@@ -8,14 +8,12 @@ const AnoAI = () => {
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
+    
     const scene = new THREE.Scene();
     const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
     const renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
-    if (container) {
-      container.appendChild(renderer.domElement);
-    }
-    
+    container.appendChild(renderer.domElement); // Fixed: removed the ! operator
 
     const material = new THREE.ShaderMaterial({
       uniforms: {
@@ -110,7 +108,7 @@ const AnoAI = () => {
     return () => {
       cancelAnimationFrame(frameId);
       window.removeEventListener('resize', handleResize);
-      if (container) {
+      if (container && container.contains(renderer.domElement)) {
         container.removeChild(renderer.domElement);
       }
       geometry.dispose();
