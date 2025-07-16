@@ -11,6 +11,7 @@ import { useTheme } from 'next-themes';
 import { Particles } from "@/components/ui/particles";
 import * as THREE from 'three';
 import { TextAnimate } from "@/components/magicui/text-animate";
+import ClientOnly from "@/components/ClientOnly";
 
 // Simple typewriter effect for roles
 const roles = [
@@ -197,7 +198,9 @@ export function Hero() {
             transition={{ delay: 0.3, duration: 1 }}
             className={`text-xl sm:text-2xl mb-8 max-w-2xl ${theme === 'dark' ? 'text-blue-200' : 'text-blue-700'}`}
           >
-            <AnimatedRoles />
+            <ClientOnly>
+              <AnimatedRoles />
+            </ClientOnly>
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 40 }}
