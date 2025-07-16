@@ -62,7 +62,7 @@ export function Navigation() {
               transition={{ delay: 0.2 }}
             >
               <Link href="#home" className="text-2xl font-bold text-primary">
-                Portfolio.
+                ayan.dev
               </Link>
             </motion.div>
 
