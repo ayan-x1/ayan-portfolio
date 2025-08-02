@@ -50,7 +50,7 @@ export function Footer() {
               className="md:col-span-2"
             >
               <Link href="#home" className="text-2xl font-bold text-primary mb-4 block">
-                Ayan
+                ayan.dev
               </Link>
               <p className="text-muted-foreground mb-6 max-w-md">
                 Full Stack Developer passionate about creating exceptional digital experiences 
@@ -141,7 +141,7 @@ export function Footer() {
               viewport={{ once: true }}
               className="text-sm text-muted-foreground flex items-center gap-1"
             >
-              © {new Date().getFullYear()} Ayan · All rights reserved · Built with {' '}
+              © {new Date().getFullYear()} ayan.dev · All rights reserved · Built with {' '}
               <Heart className="w-4 h-4 text-red-500 fill-current" />
             </motion.p>
 
