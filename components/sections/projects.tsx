@@ -7,6 +7,7 @@ import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import ExpandableProjectCard from '@/components/ui/expandable-project-card';
+import ThreeDProjectCard from '@/components/ui/3d-project-card';
 
 const projects = [
   {
@@ -159,7 +160,7 @@ export function Projects() {
                 My most recent and impactful projects
               </p>
             </div>
-            <ExpandableProjectCard 
+            <ThreeDProjectCard 
               projects={filteredFeaturedProjects}
               featured={true}
             />
@@ -182,7 +183,7 @@ export function Projects() {
                 Additional projects showcasing various technologies and skills
               </p>
             </div>
-            <ExpandableProjectCard 
+            <ThreeDProjectCard 
               projects={filteredOtherProjects}
               featured={false}
             />
