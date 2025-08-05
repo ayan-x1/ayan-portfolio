@@ -3,9 +3,10 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Moon, Sun, Eye } from 'lucide-react';
+import { Moon, Sun, Eye } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { Button } from '@/components/ui/button';
+import { AnimatedMenuButton } from '@/components/ui/animated-menu-button';
 import { ResumeModal } from '@/components/resume-modal';
 
 const navItems = [
@@ -38,8 +39,6 @@ export function Navigation() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollY]);
-
-  // Removed downloadResume function as Download button is being removed
 
   if (!mounted) return null;
 
@@ -94,7 +93,6 @@ export function Navigation() {
                   <Eye className="w-4 h-4" />
                   View Resume
                 </Button>
-                {/* Removed Download button from desktop navigation */}
                 <Button
                   variant="ghost"
                   size="sm"
@@ -123,13 +121,10 @@ export function Navigation() {
                 )}
               </Button>
               
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => setIsOpen(!isOpen)}
-              >
-                {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-              </Button>
+              <AnimatedMenuButton
+                isOpen={isOpen}
+                onToggle={() => setIsOpen(!isOpen)}
+              />
             </div>
           </div>
         </div>
@@ -168,7 +163,6 @@ export function Navigation() {
                     <Eye className="w-4 h-4" />
                     View Resume
                   </Button>
-                  {/* Removed Download button from mobile navigation */}
                 </div>
               </div>
             </motion.div>
