@@ -45,38 +45,34 @@ const skills = [
   }
 ];
 
-// Updated slugs for IconCloud - replacing dart/flutter with react-native and java with c++
 const iconCloudSlugs = [
   "typescript",
   "javascript",
-  "react",
+  "python",
   "cplusplus",
-  "reactnative",
-  "flutter",
-  "android",
+  "react",
+  "nextdotjs",
   "html5",
-  "css3",
+  "tailwindcss", // Replaced css3
   "nodedotjs",
   "express",
-  "nextdotjs",
-  "prisma",
-  "amazonaws",
   "postgresql",
+  "mongodb",
+  "redis",
+  "prisma",
   "firebase",
-  "nginx",
   "vercel",
-  "testinglibrary",
-  "jest",
-  "cypress",
   "docker",
+  "nginx",
   "git",
-  "jira",
   "github",
   "gitlab",
-  "visualstudiocode",
-  "androidstudio",
-  "sonarqube",
+  "android",
+  "flutter",
   "figma",
+  "androidstudio",
+  "jest",
+  // Remove visualstudiocode entirely as it doesn't exist in Simple Icons
 ];
 
 const experiences = [
@@ -179,7 +175,7 @@ export function About() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
             Skills & Technologies
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-12">
@@ -192,49 +188,53 @@ export function About() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
           viewport={{ once: true }}
-          className="grid lg:grid-cols-2 gap-12 max-w-7xl mx-auto"
+          className="flex flex-col lg:flex-row gap-12 max-w-7xl mx-auto items-center"
         >
-          {/* Left side: Skills cards */}
-          <div className="grid sm:grid-cols-2 gap-6">
-            {skills.map((skill, index) => (
-              <motion.div
-                key={skill.category}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1, duration: 0.5 }}
-                viewport={{ once: true }}
-              >
-                <Card className="h-full hover:shadow-lg transition-all duration-300 hover:scale-105">
-                  <CardContent className="p-6">
-                    <div className="flex items-center mb-4">
-                      <div className={`p-3 rounded-lg bg-gradient-to-r ${skill.color} mr-4`}>
-                        <skill.icon className="w-6 h-6 text-white" />
+          {/* Skills cards - Left side in 2x2 pairs */}
+          <div className="w-full lg:w-1/2">
+            <div className="grid grid-cols-2 gap-6">
+              {skills.map((skill, index) => (
+                <motion.div
+                  key={skill.category}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1, duration: 0.5 }}
+                  viewport={{ once: true }}
+                >
+                  <Card className="h-full hover:shadow-xl transition-all duration-300 hover:scale-105 border-0 bg-gradient-to-br from-card to-card/50 backdrop-blur-sm">
+                    <CardContent className="p-6">
+                      <div className="flex items-center mb-4">
+                        <div className={`p-3 rounded-xl bg-gradient-to-r ${skill.color} mr-4 shadow-lg`}>
+                          <skill.icon className="w-6 h-6 text-white" />
+                        </div>
+                        <h4 className="font-semibold text-lg">{skill.category}</h4>
                       </div>
-                      <h4 className="font-semibold text-lg">{skill.category}</h4>
-                    </div>
-                    <div className="flex flex-wrap gap-2">
-                      {skill.technologies.map((tech) => (
-                        <Badge key={tech} variant="secondary" className="text-xs">
-                          {tech}
-                        </Badge>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
+                      <div className="flex flex-wrap gap-2">
+                        {skill.technologies.map((tech) => (
+                          <Badge key={tech} variant="secondary" className="text-xs bg-secondary/50 hover:bg-secondary/70 transition-colors">
+                            {tech}
+                          </Badge>
+                        ))}
+                      </div>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
           </div>
 
-          {/* Right side: IconCloud */}
+          {/* IconCloud - Right side with enhanced design and better centering */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.8 }}
             viewport={{ once: true }}
-            className="relative h-[600px] w-full"
+            className="w-full lg:w-1/2 flex justify-center items-center"
           >
-            <div className="relative flex size-full items-center justify-center overflow-hidden rounded-2xl border bg-gradient-to-br from-muted/50 to-muted/30">
-              <IconCloud images={images} />
+            <div className="relative h-[500px] w-[500px] flex items-center justify-center">
+              <div className="relative flex size-full items-center justify-center overflow-hidden rounded-3xl border bg-background shadow-lg">
+                <IconCloud images={images} />
+              </div>
             </div>
           </motion.div>
         </motion.div>
@@ -247,23 +247,38 @@ export function About() {
           viewport={{ once: true }}
           className="text-center mt-20"
         >
-          <Card className="max-w-4xl mx-auto">
+          <Card className="max-w-4xl mx-auto border-0 bg-gradient-to-br from-card to-card/50 backdrop-blur-sm">
             <CardContent className="p-8">
-              <h3 className="text-2xl font-bold mb-6">Why Work With Me?</h3>
+              <h3 className="text-2xl font-bold mb-6 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">Why Work With Me?</h3>
               <div className="grid md:grid-cols-3 gap-8">
-                <div>
+                <div className="text-center">
+                  <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                    </svg>
+                  </div>
                   <h4 className="font-semibold mb-2">Problem Solver</h4>
                   <p className="text-muted-foreground text-sm">
                     I approach every challenge with analytical thinking and creative solutions.
                   </p>
                 </div>
-                <div>
+                <div className="text-center">
+                  <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                    </svg>
+                  </div>
                   <h4 className="font-semibold mb-2">Team Player</h4>
                   <p className="text-muted-foreground text-sm">
                     Collaborative mindset with excellent communication skills.
                   </p>
                 </div>
-                <div>
+                <div className="text-center">
+                  <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                    </svg>
+                  </div>
                   <h4 className="font-semibold mb-2">Continuous Learner</h4>
                   <p className="text-muted-foreground text-sm">
                     Always staying updated with the latest technologies and best practices.
