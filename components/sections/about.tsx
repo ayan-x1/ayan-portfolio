@@ -4,7 +4,6 @@ import { motion } from 'framer-motion';
 import { Code, Database, Globe, Smartphone, Server, Palette } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { IconCloud } from '@/components/magicui/icon-cloud';
 
 const skills = [
   {
@@ -43,40 +42,6 @@ const skills = [
     technologies: ['UI/UX', 'Figma', 'Adobe XD', 'Photoshop', 'Illustrator'],
     color: 'from-pink-500 to-rose-500'
   }
-];
-
-// IconCloud technology slugs
-const technologySlugs = [
-  "typescript",
-  "javascript",
-  "react-native",
-  "cplusplus",
-  "react",
-  "flutter",
-  "android",
-  "html5",
-  "css3",
-  "nodedotjs",
-  "express",
-  "nextdotjs",
-  "prisma",
-  "amazonaws",
-  "postgresql",
-  "firebase",
-  "nginx",
-  "vercel",
-  "testinglibrary",
-  "jest",
-  "cypress",
-  "docker",
-  "git",
-  "jira",
-  "github",
-  "gitlab",
-  "visualstudiocode",
-  "androidstudio",
-  "sonarqube",
-  "figma",
 ];
 
 const experiences = [
@@ -189,58 +154,34 @@ export function About() {
           transition={{ duration: 0.8, delay: 0.6 }}
           viewport={{ once: true }}
         >
-          <div className="grid lg:grid-cols-2 gap-12 max-w-7xl mx-auto">
-            {/* Left side - Skills Grid */}
-            <div className="grid sm:grid-cols-2 gap-6">
-              {skills.map((skill, index) => (
-                <motion.div
-                  key={skill.category}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1, duration: 0.5 }}
-                  viewport={{ once: true }}
-                >
-                  <Card className="h-full hover:shadow-lg transition-all duration-300 hover:scale-105">
-                    <CardContent className="p-6">
-                      <div className="flex items-center mb-4">
-                        <div className={`p-3 rounded-lg bg-gradient-to-r ${skill.color} mr-4`}>
-                          <skill.icon className="w-6 h-6 text-white" />
-                        </div>
-                        <h4 className="font-semibold text-lg">{skill.category}</h4>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            {skills.map((skill, index) => (
+              <motion.div
+                key={skill.category}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1, duration: 0.5 }}
+                viewport={{ once: true }}
+              >
+                <Card className="h-full hover:shadow-lg transition-all duration-300 hover:scale-105">
+                  <CardContent className="p-6">
+                    <div className="flex items-center mb-4">
+                      <div className={`p-3 rounded-lg bg-gradient-to-r ${skill.color} mr-4`}>
+                        <skill.icon className="w-6 h-6 text-white" />
                       </div>
-                      <div className="flex flex-wrap gap-2">
-                        {skill.technologies.map((tech) => (
-                          <Badge key={tech} variant="secondary" className="text-xs">
-                            {tech}
-                          </Badge>
-                        ))}
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
-
-            {/* Right side - IconCloud */}
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.8 }}
-              viewport={{ once: true }}
-              className="flex flex-col items-center justify-center"
-            >
-              <div className="text-center mb-6">
-                <h3 className="text-2xl font-bold mb-2">Interactive Tech Stack</h3>
-                <p className="text-muted-foreground">
-                  Click and drag to explore my technology ecosystem
-                </p>
-              </div>
-              <div className="relative w-full max-w-md h-96 flex items-center justify-center">
-                <IconCloud 
-                  images={technologySlugs.map(slug => `https://cdn.simpleicons.org/${slug}/${slug}`)}
-                />
-              </div>
-            </motion.div>
+                      <h4 className="font-semibold text-lg">{skill.category}</h4>
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      {skill.technologies.map((tech) => (
+                        <Badge key={tech} variant="secondary" className="text-xs">
+                          {tech}
+                        </Badge>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
           </div>
         </motion.div>
 
