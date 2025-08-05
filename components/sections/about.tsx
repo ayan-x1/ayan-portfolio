@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { Code, Database, Globe, Smartphone, Server, Palette } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { IconCloud } from "@/components/magicui/icon-cloud";
 
 const skills = [
   {
@@ -44,6 +45,40 @@ const skills = [
   }
 ];
 
+// Updated slugs for IconCloud - replacing dart/flutter with react-native and java with c++
+const iconCloudSlugs = [
+  "typescript",
+  "javascript",
+  "react",
+  "cplusplus",
+  "reactnative",
+  "flutter",
+  "android",
+  "html5",
+  "css3",
+  "nodedotjs",
+  "express",
+  "nextdotjs",
+  "prisma",
+  "amazonaws",
+  "postgresql",
+  "firebase",
+  "nginx",
+  "vercel",
+  "testinglibrary",
+  "jest",
+  "cypress",
+  "docker",
+  "git",
+  "jira",
+  "github",
+  "gitlab",
+  "visualstudiocode",
+  "androidstudio",
+  "sonarqube",
+  "figma",
+];
+
 const experiences = [
   {
     title: 'TatvaSoft – 15-Day Summer Internship Program',
@@ -68,6 +103,10 @@ const experiences = [
 ];
 
 export function About() {
+  const images = iconCloudSlugs.map(
+    (slug) => `https://cdn.simpleicons.org/${slug}/${slug}`,
+  );
+
   return (
     <section id="about" className="py-20 bg-muted/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -132,7 +171,7 @@ export function About() {
           </div>
         </motion.div>
 
-        {/* Part 2: Skills Section */}
+        {/* Part 2: Skills Section with IconCloud */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -153,8 +192,10 @@ export function About() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
           viewport={{ once: true }}
+          className="grid lg:grid-cols-2 gap-12 max-w-7xl mx-auto"
         >
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          {/* Left side: Skills cards */}
+          <div className="grid sm:grid-cols-2 gap-6">
             {skills.map((skill, index) => (
               <motion.div
                 key={skill.category}
@@ -183,6 +224,19 @@ export function About() {
               </motion.div>
             ))}
           </div>
+
+          {/* Right side: IconCloud */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+            viewport={{ once: true }}
+            className="relative h-[600px] w-full"
+          >
+            <div className="relative flex size-full items-center justify-center overflow-hidden rounded-2xl border bg-gradient-to-br from-muted/50 to-muted/30">
+              <IconCloud images={images} />
+            </div>
+          </motion.div>
         </motion.div>
 
         {/* Personal Info */}
