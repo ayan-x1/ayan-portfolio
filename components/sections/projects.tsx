@@ -77,7 +77,26 @@ const projects = [
       lastUpdated: "2024-06-01"
     },
     category: "Full Stack"
-  }
+  },
+  {
+  id: 5,
+  title: "CartifyHub",
+  description: "A modern full-stack e-commerce platform built with Next.js, offering 3D product previews, secure payments, and an admin dashboard.",
+  longDescription: "CartifyHub is a full-stack e-commerce platform built with Next.js 13+ featuring 3D product visualization with Three.js, Clerk authentication, Stripe checkout in test mode, order tracking, and an admin panel for product and order management. It also provides sales analytics and inventory tracking with a fully responsive UI using Tailwind + shadcn/ui.",
+  image: "ch.png",
+  technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS", "shadcn/ui", "MongoDB", "Clerk", "Stripe", "Three.js", "Inngest"],
+  githubUrl: "https://github.com/yourname/cartifyhub", 
+  liveUrl: "https://cartifyhub.onrender.com",
+  featured: true,
+  stats: {
+    stars: 0,
+    forks: 0,
+    lastUpdated: "2025-09-11"
+  },
+  category: "Full Stack"
+}
+
+
 ];
 
 const categories = ["All", "Full Stack", "Frontend", "Backend", "Mobile"];
