@@ -2,7 +2,7 @@
 
 ## 🌐 Live Demo
 
-🛰️ [https://ayan-portfolio.netlify.app](https://ayanali-portfolio.netlify.app/)
+🛰️ [ayanali-portfolio.netlify.app](https://ayanali-portfolio.netlify.app/)
 
 ---
 
