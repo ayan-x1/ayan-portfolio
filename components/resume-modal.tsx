@@ -74,7 +74,7 @@ export function ResumeModal({ isOpen, onClose }: ResumeModalProps) {
         <div className="flex-1 p-4 pt-2 flex flex-col justify-start">
           <div className="w-full h-full border border-border rounded-lg overflow-hidden">
             <object
-              data="/Ayan_s_Resume.pdf"
+              data="/My_Resume.pdf"
               type="application/pdf"
               className="w-full h-full"
             >
