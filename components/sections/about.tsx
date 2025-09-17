@@ -34,7 +34,7 @@ const skills = [
   {
     category: 'Tools',
     icon: Code,
-    technologies: ['Git', 'GitHub', 'Docker', 'JWT', 'Vercel', 'Figma', 'VS Code'],
+    technologies: ['Git', 'GitHub', 'Docker', 'Vercel', 'Figma', 'VS Code'],
     color: 'from-indigo-500 to-blue-500'
   },
   {
