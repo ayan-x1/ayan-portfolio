@@ -201,7 +201,8 @@ export function Hero() {
       />
       
       {/* Hero Content */}
-      <div className="relative z-10 w-full max-w-5xl mx-auto px-4 flex flex-col md:flex-row items-center justify-center min-h-[70vh] gap-10 md:gap-16">
+      {/* ✅ Changed to flex-col and md:flex-row for responsiveness */}
+      <div className="relative z-10 w-full max-w-5xl mx-auto px-4 flex flex-col md:flex-row items-center justify-center min-h-[70vh] gap-10 md:gap-16 text-center md:text-left">
         {/* Ellipse Photo Frame on Left */}
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
@@ -228,7 +229,8 @@ export function Hero() {
         </motion.div>
         
         {/* Right Side: Name, Typewriter, Buttons */}
-        <div className="flex-1 flex flex-col items-center md:items-start text-center md:text-left">
+        {/* ✅ Centered items on mobile with items-center and md:items-start */}
+        <div className="flex-1 flex flex-col items-center md:items-start">
           <motion.h1
             initial="hidden"
             animate="visible"
@@ -236,7 +238,8 @@ export function Hero() {
               hidden: {},
               visible: { transition: { staggerChildren: 0.12 } }
             }}
-            className={`text-4xl sm:text-6xl lg:text-7xl font-extrabold mb-6 tracking-tight futuristic-font ${theme === 'dark' ? 'text-white' : 'text-black'}`}
+             // ✅ Adjusted text size for different screen sizes
+            className={`text-4xl sm:text-5xl lg:text-7xl font-extrabold mb-4 sm:mb-6 tracking-tight futuristic-font ${theme === 'dark' ? 'text-white' : 'text-black'}`}
           >
             <span className="block">
               {["Hey there,", "I'm"].map((word, i) => (
@@ -261,13 +264,13 @@ export function Hero() {
               </motion.span>
             </span>
           </motion.h1>
-          
-          {/* ✅ Fixed: Changed from <p> to <div> to avoid nesting issues */}
+
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 1 }}
-            className={`text-xl sm:text-2xl mb-8 max-w-2xl ${theme === 'dark' ? 'text-blue-200' : 'text-blue-700'}`}
+             // ✅ Adjusted text size
+            className={`text-lg sm:text-2xl mb-8 max-w-2xl ${theme === 'dark' ? 'text-blue-200' : 'text-blue-700'}`}
           >
             <ClientOnly>
               <AnimatedRoles />
@@ -278,13 +281,15 @@ export function Hero() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 1 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start items-center"
+             // ✅ Changed to flex-col on small screens, sm:flex-row on larger
+            className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto items-center justify-center md:justify-start"
           >
             <motion.button
               whileHover={{ scale: 1.08, y: -4 }}
               transition={{ type: 'spring', stiffness: 300 }}
               onClick={downloadResume}
-              className={`px-8 py-3 rounded-lg shadow-lg text-lg font-semibold focus:outline-none focus:ring-2 focus:ring-blue-400 floating-cta ${theme === 'dark' ? 'bg-white text-black hover:bg-blue-200' : 'bg-black text-white hover:bg-blue-800'}`}
+               // ✅ Ensured full width on mobile with w-full sm:w-auto
+              className={`w-full sm:w-auto px-8 py-3 rounded-lg shadow-lg text-lg font-semibold focus:outline-none focus:ring-2 focus:ring-blue-400 floating-cta ${theme === 'dark' ? 'bg-white text-black hover:bg-blue-200' : 'bg-black text-white hover:bg-blue-800'}`}
             >
               Download Resume
             </motion.button>
@@ -292,7 +297,8 @@ export function Hero() {
               whileHover={{ scale: 1.08, y: -4 }}
               transition={{ type: 'spring', stiffness: 300 }}
               onClick={goToProjects}
-              className={`px-8 py-3 rounded-lg shadow-lg text-lg font-semibold focus:outline-none focus:ring-2 focus:ring-blue-400 floating-cta ${theme === 'dark' ? 'bg-white/10 text-blue-200 hover:bg-white/20' : 'bg-blue-100 text-blue-700 hover:bg-blue-200'}`}
+               // ✅ Ensured full width on mobile with w-full sm:w-auto
+              className={`w-full sm:w-auto px-8 py-3 rounded-lg shadow-lg text-lg font-semibold focus:outline-none focus:ring-2 focus:ring-blue-400 floating-cta ${theme === 'dark' ? 'bg-white/10 text-blue-200 hover:bg-white/20' : 'bg-blue-100 text-blue-700 hover:bg-blue-200'}`}
             >
               View Projects
             </motion.button>

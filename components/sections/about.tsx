@@ -46,33 +46,11 @@ const skills = [
 ];
 
 const iconCloudSlugs = [
-  "typescript",
-  "javascript",
-  "python",
-  "cplusplus",
-  "react",
-  "nextdotjs",
-  "html5",
-  "tailwindcss", // Replaced css3
-  "nodedotjs",
-  "express",
-  "postgresql",
-  "mongodb",
-  "redis",
-  "prisma",
-  "firebase",
-  "vercel",
-  "docker",
-  "nginx",
-  "git",
-  "github",
-  "gitlab",
-  "android",
-  "flutter",
-  "figma",
-  "androidstudio",
-  "jest",
-  // Remove visualstudiocode entirely as it doesn't exist in Simple Icons
+  "typescript", "javascript", "python", "cplusplus", "react",
+  "nextdotjs", "html5", "tailwindcss", "nodedotjs", "express",
+  "postgresql", "mongodb", "redis", "prisma", "firebase",
+  "vercel", "docker", "nginx", "git", "github",
+  "gitlab", "android", "flutter", "figma", "androidstudio", "jest",
 ];
 
 const experiences = [
@@ -85,7 +63,7 @@ const experiences = [
     },
     description: (
       <>
-        <ul className="list-disc pl-5">
+        <ul className="list-disc pl-5 space-y-2"> {/* ✅ Added space-y-2 for better readability */}
           <li>Completed a structured 15-day internship at TatvaSoft, practicing real-world full-stack development.</li>
           <li>Daily assignments included building robust front-end components with <b>Angular</b> and implementing business logic, RESTful services and data models in <b>ASP.NET Core</b>.</li>
           <li>Developed and tested APIs using Swagger UI, allowing easy exploration, validation, and documentation of endpoints.</li>
@@ -117,7 +95,7 @@ export function About() {
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
             About Me
           </h2>
-          <p className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
+          <p className="text-lg sm:text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed"> {/* ✅ Adjusted text size */}
             Third-year B.Tech student in Information Technology with extensive hands-on experience in full-stack web and application development. Passionate about building robust, scalable, and user-centric platforms using modern technologies such as React.js, React-Native, Node.js, Express.js, and PostgreSQL. Proficient in DevOps tools and practices, including Docker, GitHub Actions, and cloud deployment (AWS, Vercel), enabling smooth CI/CD workflows and efficient production rollouts.
           </p>
         </motion.div>
@@ -130,7 +108,7 @@ export function About() {
           viewport={{ once: true }}
           className="mb-20"
         >
-          <h3 className="text-2xl font-bold mb-8 text-center">Experience</h3>
+          <h3 className="text-2xl sm:text-3xl font-bold mb-8 text-center">Experience</h3> {/* ✅ Adjusted text size */}
           <div className="max-w-4xl mx-auto">
             {experiences.map((exp, index) => (
               <motion.div
@@ -141,9 +119,9 @@ export function About() {
                 viewport={{ once: true }}
                 className="relative pl-8 border-l-2 border-primary/20 mb-8"
               >
-                <div className="absolute -left-2 top-0 w-4 h-4 bg-primary rounded-full"></div>
+                <div className="absolute -left-2 top-0.5 w-4 h-4 bg-primary rounded-full"></div> {/* ✅ Adjusted position */}
                 <div className="mb-4">
-                  <h4 className="text-xl font-semibold">{exp.title}</h4>
+                  <h4 className="text-lg sm:text-xl font-semibold">{exp.title}</h4> {/* ✅ Adjusted text size */}
                   <p className="text-sm text-muted-foreground mb-3">{exp.period}</p>
                   {exp.links && (
                     <div className="flex flex-wrap gap-3 mb-4">
@@ -178,7 +156,7 @@ export function About() {
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
             Skills & Technologies
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-12">
+          <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto mb-12"> {/* ✅ Adjusted text size */}
             A comprehensive toolkit of modern technologies and frameworks I use to bring ideas to life.
           </p>
         </motion.div>
@@ -188,11 +166,13 @@ export function About() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
           viewport={{ once: true }}
+          // ✅ Changed to flex-col and lg:flex-row for responsiveness
           className="flex flex-col lg:flex-row gap-12 max-w-7xl mx-auto items-center"
         >
-          {/* Skills cards - Left side in 2x2 pairs */}
+          {/* Skills cards */}
           <div className="w-full lg:w-1/2">
-            <div className="grid grid-cols-2 gap-6">
+             {/* ✅ Changed to grid-cols-1 on small screens, sm:grid-cols-2 for larger */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {skills.map((skill, index) => (
                 <motion.div
                   key={skill.category}
@@ -223,7 +203,7 @@ export function About() {
             </div>
           </div>
 
-          {/* IconCloud - Right side with enhanced design and better centering */}
+          {/* IconCloud */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -231,7 +211,8 @@ export function About() {
             viewport={{ once: true }}
             className="w-full lg:w-1/2 flex justify-center items-center"
           >
-            <div className="relative h-[500px] w-[500px] flex items-center justify-center">
+            {/* ✅ UPDATED CONTAINER FOR BETTER POSITIONING */}
+            <div className="w-full max-w-[300px] sm:max-w-[400px] lg:max-w-[500px] aspect-square">
               <div className="relative flex size-full items-center justify-center overflow-hidden rounded-3xl border bg-background shadow-lg">
                 <IconCloud images={images} />
               </div>
@@ -239,7 +220,7 @@ export function About() {
           </motion.div>
         </motion.div>
 
-        {/* Personal Info */}
+        {/* Why Work With Me? */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -249,8 +230,9 @@ export function About() {
         >
           <Card className="max-w-4xl mx-auto border-0 bg-gradient-to-br from-card to-card/50 backdrop-blur-sm">
             <CardContent className="p-8">
-              <h3 className="text-2xl font-bold mb-6 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">Why Work With Me?</h3>
-              <div className="grid md:grid-cols-3 gap-8">
+              <h3 className="text-2xl sm:text-3xl font-bold mb-6 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">Why Work With Me?</h3> {/* ✅ Adjusted text size */}
+               {/* ✅ Default to grid-cols-1, md:grid-cols-3 for larger screens */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div className="text-center">
                   <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center mx-auto mb-4">
                     <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">

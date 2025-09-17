@@ -23,14 +23,14 @@ const contactInfo = [
     icon: Phone,
     label: 'Phone',
     value: '+91 9313917598',
-    href: 'NA',
+    href: 'tel:+919313917598', // ✅ Changed to tel: for direct calling
     color: 'from-green-500 to-emerald-500'
   },
   {
     icon: MapPin,
     label: 'Location',
     value: 'Sindhiwad, Lal tower, Rajpipla, Gujarat, 393145',
-    href: 'https://maps.google.com/?q=Sindhiwad,Lal+tower,Rajpipla,Gujarat,393145',
+    href: 'https://www.google.com/maps/search/?api=1&query=Rajpipla,+Gujarat', // ✅ Fixed link
     color: 'from-purple-500 to-pink-500'
   }
 ];
@@ -78,9 +78,9 @@ export function Contact() {
     setIsSubmitting(true);
 
     try {
-      // Initialize EmailJS with your public key
-      emailjs.init("vbxLMo71V4JfYn_UC");
 
+      emailjs.init("vbxLMo71V4JfYn_UC");
+      
       const templateParams = {
         from_name: formData.name,
         from_email: formData.email,
@@ -118,13 +118,14 @@ export function Contact() {
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
             Get In Touch
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto"> {/* ✅ Adjusted text size */}
             I'm always interested in new opportunities and exciting projects. 
             Whether you have a question or just want to say hi, feel free to reach out!
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-3 gap-12">
+        {/* ✅ Default to grid-cols-1, lg:grid-cols-3 for larger screens */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
           {/* Contact Information */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -165,7 +166,7 @@ export function Contact() {
                           <p className="font-medium group-hover:text-primary transition-colors">
                             {info.label}
                           </p>
-                          <p className="text-sm text-muted-foreground">
+                          <p className="text-sm text-muted-foreground break-all"> {/* ✅ Added break-all for long text */}
                             {info.value}
                           </p>
                         </div>
@@ -218,7 +219,8 @@ export function Contact() {
               </CardHeader>
               <CardContent>
                 <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid md:grid-cols-2 gap-6">
+                  {/* ✅ Default to grid-cols-1, md:grid-cols-2 for larger screens */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
                       <Label htmlFor="name">Name *</Label>
                       <Input
@@ -306,11 +308,12 @@ export function Contact() {
         >
           <Card className="max-w-2xl mx-auto bg-gradient-to-r from-primary/5 to-secondary/5 border-primary/20">
             <CardContent className="p-8">
-              <h3 className="text-2xl font-bold mb-4">Ready to Start a Project?</h3>
+              <h3 className="text-xl sm:text-2xl font-bold mb-4">Ready to Start a Project?</h3> {/* ✅ Adjusted text size */}
               <p className="text-muted-foreground mb-6">
                 I'm available for freelance work and full-time opportunities. 
                 Let's discuss your next big idea!
               </p>
+              {/* ✅ Changed to flex-col on small screens */}
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button
                   size="lg"

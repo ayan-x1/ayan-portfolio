@@ -78,31 +78,25 @@ export default function ThreeDProjectCard({ projects, featured = false }: ThreeD
       <AnimatePresence>
         {active ? (
           <div className="fixed inset-0 grid place-items-center z-[100] p-4">
-            <motion.button
-              key={`button-${active.title}-${id}`}
-              layout
-              initial={{
-                opacity: 0,
-              }}
-              animate={{
-                opacity: 1,
-              }}
-              exit={{
-                opacity: 0,
-                transition: {
-                  duration: 0.05,
-                },
-              }}
-              className="flex absolute top-4 right-4 items-center justify-center bg-white dark:bg-neutral-800 rounded-full h-10 w-10 shadow-lg hover:scale-110 transition-transform"
-              onClick={() => setActive(null)}
-            >
-              <CloseIcon />
-            </motion.button>
+            {/* ✅ FIXED: The button is now INSIDE the card's div below to solve the layering issue. */}
             <motion.div
               layoutId={`card-${active.title}-${id}`}
               ref={ref}
-              className="w-full max-w-4xl h-full md:h-fit md:max-h-[90vh] flex flex-col bg-white dark:bg-neutral-900 rounded-2xl overflow-hidden shadow-2xl border border-neutral-200 dark:border-neutral-700"
+              // ✅ FIXED: Added 'relative' to create a positioning context for the close button.
+              className="relative w-full max-w-4xl h-full md:h-fit md:max-h-[90vh] flex flex-col bg-white dark:bg-neutral-900 rounded-2xl overflow-hidden shadow-2xl border border-neutral-200 dark:border-neutral-700"
             >
+              {/* ✅ FIXED: Button moved inside and given a z-index to ensure it's always on top. */}
+              <motion.button
+                key={`button-${active.title}-${id}`}
+                layout
+                initial={{ opacity: 0, scale: 0.5 }}
+                animate={{ opacity: 1, scale: 1, transition: { delay: 0.2 } }}
+                exit={{ opacity: 0, scale: 0.5 }}
+                className="flex absolute top-4 right-4 items-center justify-center bg-white dark:bg-neutral-800 rounded-full h-10 w-10 shadow-lg hover:scale-110 transition-transform z-10"
+                onClick={() => setActive(null)}
+              >
+                <CloseIcon />
+              </motion.button>
               <motion.div layoutId={`image-${active.title}-${id}`} className="relative">
                 <img
                   width={400}
@@ -114,10 +108,10 @@ export default function ThreeDProjectCard({ projects, featured = false }: ThreeD
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
               </motion.div>
 
-              <div className="flex-1 flex flex-col">
+              <div className="flex-1 flex flex-col overflow-y-auto">
                 <div className="p-6">
                   <div className="flex justify-between items-start mb-4">
-                    <div className="flex-1">
+                    <div className="flex-1 pr-4">
                       <motion.h3
                         layoutId={`title-${active.title}-${id}`}
                         className="font-bold text-xl md:text-2xl text-neutral-800 dark:text-neutral-100 mb-2"
@@ -137,7 +131,7 @@ export default function ThreeDProjectCard({ projects, featured = false }: ThreeD
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
-                      className="flex gap-2 ml-4"
+                      className="flex flex-col sm:flex-row gap-2 ml-4"
                     >
                       <Button
                         variant="outline"
@@ -190,7 +184,7 @@ export default function ThreeDProjectCard({ projects, featured = false }: ThreeD
                       ))}
                     </div>
                     
-                    <div className="flex items-center gap-6 text-sm text-muted-foreground">
+                    <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
                       <div className="flex items-center gap-1">
                         <Star className="w-4 h-4" />
                         <span>{active.stats.stars}</span>
@@ -355,4 +349,4 @@ export const CloseIcon = () => {
       <path d="M6 6l12 12" />
     </motion.svg>
   );
-}; 
+};
