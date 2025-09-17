@@ -22,25 +22,25 @@ const skills = [
   {
     category: 'Mobile',
     icon: Smartphone,
-    technologies: ['React Native', 'iOS', 'Android', 'Expo' ],
+    technologies: ['React Native', 'Android', 'Expo GO' ],
     color: 'from-purple-500 to-pink-500'
   },
   {
     category: 'Database',
     icon: Database,
-    technologies: ['PostgreSQL', 'MongoDB', 'Redis', 'Supabase', 'Firebase'],
+    technologies: ['PostgreSQL', 'MongoDB', 'Supabase', 'Firebase'],
     color: 'from-orange-500 to-red-500'
   },
   {
     category: 'Tools',
     icon: Code,
-    technologies: ['Git', 'Docker', 'AWS', 'Vercel', 'Figma', 'VS Code'],
+    technologies: ['Git', 'GitHub', 'Docker', 'JWT', 'Vercel', 'Figma', 'VS Code'],
     color: 'from-indigo-500 to-blue-500'
   },
   {
     category: 'Design',
     icon: Palette,
-    technologies: ['UI/UX', 'Figma', 'Adobe XD', 'Photoshop', 'Illustrator'],
+    technologies: ['UI/UX', 'Figma', 'Photoshop'],
     color: 'from-pink-500 to-rose-500'
   }
 ];
