@@ -23,7 +23,7 @@ const projects = [
     stats: {
       stars: 0,
       forks: 0,
-      lastUpdated: "2024-06-01"
+      lastUpdated: "2025-04-05"
     },
     category: "Full Stack"
   },
@@ -40,7 +40,7 @@ const projects = [
     stats: {
       stars: 0,
       forks: 0,
-      lastUpdated: "2024-06-01"
+      lastUpdated: "2025-04-12"
     },
     category: "Full Stack"
   },
@@ -57,7 +57,7 @@ const projects = [
     stats: {
       stars: 0,
       forks: 0,
-      lastUpdated: "2024-06-01"
+      lastUpdated: "2025-06-21"
     },
     category: "Full Stack"
   },
@@ -74,7 +74,7 @@ const projects = [
     stats: {
       stars: 0,
       forks: 0,
-      lastUpdated: "2024-06-01"
+      lastUpdated: "2025-03-28"
     },
     category: "Full Stack"
   },
@@ -91,7 +91,7 @@ const projects = [
   stats: {
     stars: 0,
     forks: 0,
-    lastUpdated: "2025-09-11"
+    lastUpdated: "2025-09-01"
   },
   category: "Full Stack"
 }
