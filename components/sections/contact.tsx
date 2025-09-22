@@ -56,7 +56,7 @@ const socialLinks = [
   }
 ];
 
-export function Contact() {
+export default function Contact() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',

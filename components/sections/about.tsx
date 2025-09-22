@@ -76,7 +76,7 @@ const experiences = [
   }
 ];
 
-export function About() {
+export default function About() {
   const images = iconCloudSlugs.map(
     (slug) => `https://cdn.simpleicons.org/${slug}/${slug}`,
   );

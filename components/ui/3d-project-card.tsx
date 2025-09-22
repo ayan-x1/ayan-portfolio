@@ -103,6 +103,7 @@ export default function ThreeDProjectCard({ projects, featured = false }: ThreeD
                   height={300}
                   src={active.image}
                   alt={active.title}
+                  loading="lazy"
                   className="w-full h-64 md:h-80 object-cover object-top"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />

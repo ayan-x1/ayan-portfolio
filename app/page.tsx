@@ -1,7 +1,8 @@
+import dynamic from 'next/dynamic';
 import { Hero } from '@/components/sections/hero';
-import { About } from '@/components/sections/about';
-import { Projects } from '@/components/sections/projects';
-import { Contact } from '@/components/sections/contact';
+const About = dynamic(() => import('@/components/sections/about'), { ssr: false });
+const Projects = dynamic(() => import('@/components/sections/projects'), { ssr: false });
+const Contact = dynamic(() => import('@/components/sections/contact'), { ssr: false });
 import { Navigation } from '@/components/navigation';
 import { Footer } from '@/components/footer';
 

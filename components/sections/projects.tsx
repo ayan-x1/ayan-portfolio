@@ -101,7 +101,7 @@ const projects = [
 
 const categories = ["All", "Full Stack", "Frontend", "Backend", "Mobile"];
 
-export function Projects() {
+export default function Projects() {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [filteredFeaturedProjects, setFilteredFeaturedProjects] = useState(projects.filter(p => p.featured));
   const [filteredOtherProjects, setFilteredOtherProjects] = useState(projects.filter(p => !p.featured));

@@ -8,8 +8,10 @@ import { ResumeModal } from '@/components/resume-modal';
 import React from 'react';
 import dynamic from 'next/dynamic';
 import { useTheme } from 'next-themes';
-import { Particles } from "@/components/ui/particles";
+const Particles = dynamic(() => import("@/components/ui/particles").then(m => m.Particles), { ssr: false });
 import * as THREE from 'three';
+import Image from 'next/image';
+import { useIsMobile, usePrefersReducedMotion } from '@/hooks/use-device';
 import { TextAnimate } from "@/components/magicui/text-animate";
 import ClientOnly from "@/components/ClientOnly";
 
@@ -48,9 +50,23 @@ function AnimatedRoles() {
 // --- Aurora Animated Background ---
 const AuroraBackground: React.FC = () => {
   const mountRef = useRef<HTMLDivElement>(null);
+  const reduced = usePrefersReducedMotion();
+  const isMobile = useIsMobile();
+  const [inView, setInView] = useState(false);
   
   useEffect(() => {
     if (!mountRef.current) return;
+    // Observe visibility: only run WebGL when actually on screen
+    const observer = new IntersectionObserver((entries) => {
+      setInView(entries[0]?.isIntersecting ?? false);
+    }, { root: null, threshold: 0.1 });
+    observer.observe(mountRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!mountRef.current) return;
+    if (reduced || isMobile || !inView) return;
     const currentMount = mountRef.current;
     
     // Get parent size
@@ -62,9 +78,9 @@ const AuroraBackground: React.FC = () => {
     let { width, height } = getSize();
     const scene = new THREE.Scene();
     const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
-    const renderer = new THREE.WebGLRenderer();
-    
+    const renderer = new THREE.WebGLRenderer({ antialias: false, alpha: true, powerPreference: 'low-power' });
     renderer.setSize(width, height);
+    renderer.setPixelRatio(Math.min(1.25, window.devicePixelRatio || 1));
     renderer.domElement.style.position = 'absolute';
     renderer.domElement.style.top = '0';
     renderer.domElement.style.left = '0';
@@ -156,7 +172,7 @@ const AuroraBackground: React.FC = () => {
       material.dispose(); 
       geometry.dispose(); 
     };
-  }, []);
+  }, [reduced, isMobile, inView]);
   
   return <div ref={mountRef} className="absolute inset-0 w-full h-full pointer-events-none z-0" />;
 };
@@ -166,6 +182,19 @@ export function Hero() {
   const { resolvedTheme } = useTheme();
   const theme = resolvedTheme || 'dark';
   const [showScrollButton, setShowScrollButton] = useState(true);
+  const isMobile = useIsMobile();
+  const reduced = usePrefersReducedMotion();
+  const [heroInView, setHeroInView] = useState(false);
+
+  const sectionRef = useRef<HTMLElement | null>(null);
+  useEffect(() => {
+    if (!sectionRef.current) return;
+    const obs = new IntersectionObserver((entries) => {
+      setHeroInView(entries[0]?.isIntersecting ?? false);
+    }, { threshold: 0.1 });
+    obs.observe(sectionRef.current);
+    return () => obs.disconnect();
+  }, []);
 
   const downloadResume = () => {
     const resumeUrl = '/My_Resume.pdf';
@@ -184,6 +213,7 @@ export function Hero() {
   return (
     <section 
       id="home" 
+      ref={(el) => { sectionRef.current = el; }}
       className={
         `relative min-h-screen flex items-center justify-center overflow-hidden ` +
         (theme === 'dark' ? 'bg-black' : 'bg-white')
@@ -193,13 +223,15 @@ export function Hero() {
       <AuroraBackground />
       
       {/* Particles Background */}
-      <Particles
-        className="absolute inset-0 z-0"
-        quantity={100}
-        ease={80}
-        color={theme === 'dark' ? '#ffffff' : '#000000'}
-        refresh
-      />
+      {heroInView && !(isMobile || reduced) && (
+        <Particles
+          className="absolute inset-0 z-0"
+          quantity={Math.max(35, 70 / Math.max(1, (window.devicePixelRatio || 1)))}
+          ease={80}
+          color={theme === 'dark' ? '#ffffff' : '#000000'}
+          refresh
+        />
+      )}
       
       {/* Hero Content */}
       {/* ✅ Changed to flex-col and md:flex-row for responsiveness */}
@@ -220,11 +252,13 @@ export function Hero() {
             }
             style={{ width: 170, height: 220, borderRadius: '50% / 40%' }}
           >
-            <img
+            <Image
               src="/ayan.jpg"
               alt="Ayan's profile"
+              width={340}
+              height={440}
               className="object-cover w-full h-full"
-              style={{ minWidth: 0, minHeight: 0 }}
+              priority
             />
           </div>
         </motion.div>

@@ -108,6 +108,7 @@ export default function ExpandableProjectCard({ projects, featured = false }: Ex
                   height={300}
                   src={active.image}
                   alt={active.title}
+                  loading="lazy"
                   className="w-full h-64 md:h-80 object-cover object-top"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
