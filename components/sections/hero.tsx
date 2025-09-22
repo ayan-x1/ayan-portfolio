@@ -168,8 +168,9 @@ export function Hero() {
   const [showScrollButton, setShowScrollButton] = useState(true);
 
   const downloadResume = () => {
+    const resumeUrl = '/My_Resume.pdf';
     const link = document.createElement('a');
-    link.href = '/Ayan_s_Resume.pdf';
+    link.href = resumeUrl;
     link.download = 'Ayan_Resume.pdf';
     document.body.appendChild(link);
     link.click();

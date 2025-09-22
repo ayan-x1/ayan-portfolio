@@ -34,14 +34,24 @@ const CustomDialogContent = React.forwardRef<
 CustomDialogContent.displayName = DialogPrimitive.Content.displayName;
 
 export function ResumeModal({ isOpen, onClose }: ResumeModalProps) {
+  // Use a single source of truth for the resume URL. Files in `public/` are served from root.
+  const resumeUrl = '/My_Resume.pdf';
+
   const downloadResume = () => {
     const link = document.createElement('a');
-    link.href = '/Ayan_s_Resume.pdf';
+    link.href = resumeUrl;
     link.download = 'Ayan_Resume.pdf';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
   };
+
+  const openInNewTab = () => {
+    window.open(resumeUrl, '_blank', 'noopener,noreferrer');
+  };
+
+  // Many mobile browsers (iOS/Android) block inline PDF rendering. Detect and avoid embedding.
+  const isMobile = typeof navigator !== 'undefined' && /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -62,6 +72,14 @@ export function ResumeModal({ isOpen, onClose }: ResumeModalProps) {
               <Button
                 variant="outline"
                 size="sm"
+                onClick={openInNewTab}
+                className="flex items-center gap-2"
+              >
+                Open in new tab
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
                 onClick={onClose}
                 className="flex items-center gap-2"
               >
@@ -73,23 +91,26 @@ export function ResumeModal({ isOpen, onClose }: ResumeModalProps) {
         </DialogHeader>
         <div className="flex-1 p-4 pt-2 flex flex-col justify-start">
           <div className="w-full h-full border border-border rounded-lg overflow-hidden">
-            <object
-              data="/My_Resume.pdf"
-              type="application/pdf"
-              className="w-full h-full"
-            >
+            {isMobile ? (
               <div className="flex items-center justify-center h-full bg-muted">
-                <div className="text-center">
+                <div className="text-center px-4">
                   <p className="text-muted-foreground mb-4">
-                    Unable to display PDF. Please download to view.
+                    Inline PDF viewers are limited on mobile. Open in a new tab or download.
                   </p>
-                  <Button onClick={downloadResume} className="flex items-center gap-2">
-                    <Download className="w-4 h-4" />
-                    Download Resume
-                  </Button>
+                  <div className="flex items-center justify-center gap-3 flex-wrap">
+                    <Button onClick={openInNewTab} className="flex items-center gap-2">
+                      Open in new tab
+                    </Button>
+                    <Button onClick={downloadResume} variant="outline" className="flex items-center gap-2">
+                      <Download className="w-4 h-4" />
+                      Download
+                    </Button>
+                  </div>
                 </div>
               </div>
-            </object>
+            ) : (
+              <iframe src={`${resumeUrl}#view=FitH`} className="w-full h-full" title="Resume PDF" />
+            )}
           </div>
         </div>
       </CustomDialogContent>
